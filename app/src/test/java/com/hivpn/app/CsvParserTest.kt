@@ -26,6 +26,7 @@ class CsvParserTest {
             dev tun
             proto tcp
             remote relay.example.net 443
+            remote-cert-tls server
             <ca>
             -----BEGIN CERTIFICATE-----
             dGVzdA==

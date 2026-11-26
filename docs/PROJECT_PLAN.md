@@ -8,7 +8,7 @@ Build a genuinely functional, privacy-conscious Android VPN client. The app is f
 - First platform: Android
 - Initial hosting budget: USD $0
 - Desired reach: multiple countries, added only when real hosting is available and verified
-- VPN protocol: WireGuard
+- Initial community-network protocol: OpenVPN profiles supplied by VPN Gate's official CSV API (M1 discovery only; tunnel integration pending).\n- Future project-owned gateway protocol: WireGuard.
 - Repository: roopanaaz2-code/HiVPN
 - Build/release: GitHub Actions; signed release artifacts must use protected GitHub secrets.
 
@@ -17,14 +17,14 @@ A zero-dollar budget cannot guarantee a large, globally distributed, high-bandwi
 
 ## Proposed architecture
 1. Android client (Kotlin, Android SDK): UI, country/server list, connection state, foreground VPN service, notification, permissions, secure configuration handling.
-2. Tunnel engine: official WireGuard Android tunnel library; no custom cryptography.
+2. Tunnel engines: OpenVPN Android engine for VPN Gate community relays (licence audit required); official WireGuard Android tunnel library for future project-owned gateways. No custom cryptography.
 3. Control plane: small HTTPS API for server catalog, health status, short-lived per-device peer provisioning, key revocation, and abuse/rate controls. Keep server private keys off the client and out of Git.
 4. Gateway: Ubuntu LTS VM with WireGuard, IP forwarding, firewall, NAT, DNS resolver, monitoring, automatic security updates, and documented recovery.
 5. Operations: health probes, latency measurement, capacity limits, abuse response, incident process, privacy policy, and transparent server status.
 6. CI: reproducible Gradle build, unit/static checks, debug APK for testing, and signed release APK only after signing secrets are configured.
 
 ## Android implementation requirements
-- Use Android VpnService and the WireGuard tunnel library.
+- Use Android VpnService with a legally compatible OpenVPN engine for VPN Gate relays; retain WireGuard support for project-owned gateways.
 - Ask for Android VPN consent before connecting.
 - Run a foreground service with persistent notification while connected.
 - Model states explicitly: disconnected, requesting_permission, connecting, connected, reconnecting, disconnecting, error.

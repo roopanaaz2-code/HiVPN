@@ -37,3 +37,8 @@ See [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md) for architecture, security requ
 
 ## Safety and privacy
 VPN use is subject to local law and provider terms. A VPN changes the public network egress IP; it does not change GPS coordinates or guarantee anonymity. Do not commit private keys, server credentials, signing keys, or user tunnel configurations to this repository.
+
+
+## VPN Gate community relay discovery (M1)
+
+HiVPN can retrieve the official VPN Gate CSV API (`https://www.vpngate.net/api/iphone/`) and display volunteer-operated relays whose OpenVPN profiles pass basic structural and safety validation. These are third-party community servers, not HiVPN-owned infrastructure. Availability, performance, and operator logging practices vary. This milestone does **not** implement an OpenVPN tunnel yet; the app must not claim to be connected until a real tunnel is integrated and independently verified.
